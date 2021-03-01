@@ -5,8 +5,8 @@ from django.contrib.auth import authenticate, login, logout
 
 def login_view(request):
     form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'generic.html', {'form': form})
 
 def signup_view(request):
     form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'generic.html', {'form': form})
