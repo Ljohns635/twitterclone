@@ -7,11 +7,17 @@
     <title>Document</title>
 </head>
 <body>
+<span><a href="/">Home</a></span>
 <span><a href="/create">Tweet</a></span>
+<span><a href="/profile/{{user.id}}">My Profile</a></span>
+<span><a href="/logout">Logout</a></span>
+<h1>{{heading_one}}</h1>
+<h1>{{heading_two}}</h1>
+<h1>{{heading_three}}</h1>
     <form action="" method="POST">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Tweet">
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
     </form>
 </body>
 </html>

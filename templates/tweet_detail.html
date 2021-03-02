@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-<span><a href="/logout">logout</a></span>
-<span><a href="/create">Tweet</a></span>
-<span><a href="/{{user.username}}">profile</a></span>
 <span><a href="/">Home</a></span>
+<span><a href="/create">Tweet</a></span>
+<span><a href="/profile/{{user.id}}">My Profile</a></span>
+<span><a href="/logout">Logout</a></span>
     <p>{{tweet.user}}</p>
     <p>{{tweet.created_at}}</p>
     <p>{{tweet.body}}</p>

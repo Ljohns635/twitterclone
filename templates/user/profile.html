@@ -7,15 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-<span><a href="/logout">logout</a></span>
-<span><a href="/create">Tweet</a></span>
-<span><a href="/{{user.username}}">profile</a></span>
-<span><a href="/">Home</a></span>
+    <span><a href="/">Home</a></span>
+    <span><a href="/create">Tweet</a></span>
+    <span><a href="/profile/{{user.id}}">My Profile</a></span>
+    <span><a href="/logout">Logout</a></span>
     {% for item in tweets %}
         <p>{{item.user}}</p>
         <p><a href="/tweet/{{item.id}}">{{item.created_at}}</a></p>
         <p>{{item.body}}</p>
         <hr>
-    {% endfor %}
+    {% endfor %} 
 </body>
 </html>

@@ -15,7 +15,7 @@ def login_view(request):
                 return HttpResponseRedirect(request.GET.get('next', reverse('home_view')))
 
     form = LoginForm()
-    return render(request, 'generic.html', {'form': form})
+    return render(request, 'forms/generic.html', {'form': form, 'heading_one': 'Login'})
 
 def signup_view(request):
     context = {}
@@ -32,8 +32,8 @@ def signup_view(request):
             )
             return HttpResponseRedirect(reverse('home_view'))
     form = SignUpForm()
-    context.update({'form': form})
-    return render(request, 'generic.html', context)
+    context.update({'form': form, 'heading_two': 'Sign Up'})
+    return render(request, 'forms/generic.html', context)
 
 @login_required
 def logout_view(request):
