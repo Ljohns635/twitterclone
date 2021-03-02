@@ -11,12 +11,11 @@
 <span><a href="/create">Tweet</a></span>
 <span><a href="/{{user.username}}">profile</a></span>
 <span><a href="/">Home</a></span>
-    {{header}}
-    {% for item in tweets%}
-    <p><a href="/{{item.user.username}}">{{item.user}}</a></p>
-    <p><a href="/tweet/{{item.id}}">{{item.created_at}}</a></p>
-    <p>{{item.body}}</p>
-    <hr>
+    {% for item in tweets %}
+        <p>{{item.user}}</p>
+        <p><a href="/tweet/{{item.id}}">{{item.created_at}}</a></p>
+        <p>{{item.body}}</p>
+        <hr>
     {% endfor %}
 </body>
 </html>
