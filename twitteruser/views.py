@@ -18,6 +18,7 @@ def follow_count(request):
     following = TwitterUser.objects.filter(followers=request.user).count()
     return render(request, 'ext/followers.html', {'follower': follower, 'following':following})
 
+@login_required
 def follow_user(request, user_id):
     logged_in_user = request.user
     to_be_followed = TwitterUser.objects.get(id=user_id)
@@ -25,6 +26,7 @@ def follow_user(request, user_id):
     logged_in_user.save()
     return HttpResponseRedirect('profile_view')
 
+@login_required
 def unfollow_user(request, user_id):
     logged_in_user = request.user
     to_be_unfollowed = TwitterUser.objects.get(id=user_id)

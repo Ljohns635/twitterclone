@@ -12,7 +12,7 @@ def login_view(request):
             user = authenticate(request, username=data['username'], password=data['password'])
             if user:
                 login(request, user)
-                return HttpResponseRedirect(request.GET.get('next', reverse('home_view')))
+                return HttpResponseRedirect(request.GET.get('next', reverse('twitteruser:home_view')))
 
     form = LoginForm()
     return render(request, 'forms/generic.html', {'form': form, 'heading_one': 'Login'})
@@ -30,7 +30,7 @@ def signup_view(request):
                 email = data['email'],
                 password = data['password'],
             )
-            return HttpResponseRedirect(reverse('home_view'))
+            return HttpResponseRedirect(reverse('twitteruser:home_view'))
     form = SignUpForm()
     context.update({'form': form, 'heading_two': 'Sign Up'})
     return render(request, 'forms/generic.html', context)

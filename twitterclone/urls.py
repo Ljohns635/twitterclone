@@ -19,6 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentication.urls')),
-    path('', include('twitteruser.urls')),
-    path('', include('tweet.urls')),
+    path('', include('twitteruser.urls', namespace='twitteruser')),
+    path('', include('tweet.urls', namespace='tweet')),
 ]

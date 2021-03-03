@@ -13,7 +13,7 @@ def create_tweet(request):
                 user = request.user,
                 body = data['body']
             )
-        return HttpResponseRedirect(reverse('tweet_details', args=[new_data.id]))
+        return HttpResponseRedirect(reverse('tweet:tweet_details', args=[new_data.id]))
     
     form = TweetForm()
     context.update({'form': form, 'heading_three': 'Tell everybody what you\'re up to! What\'s new? What\'s changed?'})
