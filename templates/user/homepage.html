@@ -7,10 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-<span><a href="/">Home</a></span>
-<span><a href="/create">Tweet</a></span>
-<span><a href="/profile/{{user.id}}">My Profile</a></span>
-<span><a href="/logout">Logout</a></span>
+{% include 'ext/base.html' %}
     {% for item in tweets%}
     <p><a href="profile/{{item.user.id}}">{{item.user}}</a></p>
     <p><a href="/tweet/{{item.id}}">{{item.created_at}}</a></p>
