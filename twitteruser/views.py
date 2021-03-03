@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth.decorators import login_required
 from twitteruser.models import TwitterUser
 from tweet.models import Tweet
@@ -13,18 +13,22 @@ def profile_view(request, user_id):
     tweets = Tweet.objects.filter(user=user_obj).order_by('created_at').reverse()
     return render(request, 'user/profile.html', {'user':user_obj, 'tweets':tweets, 'template_name': 'ext/count.html'})
 
-def follow(request):
+def follow_count(request):
     follower = TwitterUser.objects.filter(following=request.user).count()
     following = TwitterUser.objects.filter(followers=request.user).count()
     return render(request, 'ext/followers.html', {'follower': follower, 'following':following})
 
-# def follow(request):
-#     my_obj = TwitterUser.objects.all()
-#     return render(request, 'followers.html', {'my_obj':my_obj})
+def follow_user(request, user_id):
+    logged_in_user = request.user
+    to_be_followed = TwitterUser.objects.get(id=user_id)
+    logged_in_user.following.add(to_be_followed)
+    logged_in_user.save()
+    return HttpResponseRedirect(reverse('profile_view'))
 
-# def unfollow(request, target_id):
-#     follow = TwitterUser.objects.filter(user=request.user, target_id=target_id).first()
-#     if follow is not None:
-#         follow.delete()
-#     return redirect('profile_view')
+def unfollow_user(request, user_id):
+    logged_in_user = request.user
+    to_be_unfollowed = TwitterUser.objects.get(id=user_id)
+    logged_in_user.following.remove(to_be_unfollowed)
+    logged_in_user.save()
+    return HttpResponseRedirect(reverse('profile_view'))
 

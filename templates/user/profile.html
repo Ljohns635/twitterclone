@@ -10,6 +10,9 @@
     {% include 'ext/base.html' %}
     {% include template_name %}
     {% include 'ext/followers.html' %}
+    <p>{{item.following}}<a href="/follow/{{user.id}}/">Follow</a></p>
+    <p>{{item.following}}<a href="/unfollow/{{user.id}}/">Unfollow</a></p>
+    <hr>
     {% for item in tweets %}
         <p>{{item.user}}</p>
         <p><a href="/tweet/{{item.id}}">{{item.created_at}}</a></p>
