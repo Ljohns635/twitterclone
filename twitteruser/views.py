@@ -23,12 +23,12 @@ def follow_user(request, user_id):
     to_be_followed = TwitterUser.objects.get(id=user_id)
     logged_in_user.following.add(to_be_followed)
     logged_in_user.save()
-    return HttpResponseRedirect(reverse('profile_view'))
+    return HttpResponseRedirect('profile_view')
 
 def unfollow_user(request, user_id):
     logged_in_user = request.user
     to_be_unfollowed = TwitterUser.objects.get(id=user_id)
     logged_in_user.following.remove(to_be_unfollowed)
     logged_in_user.save()
-    return HttpResponseRedirect(reverse('profile_view'))
+    return HttpResponseRedirect('profile_view')
 
