@@ -5,7 +5,11 @@ from tweet.models import Tweet
 
 @login_required
 def home_view(request):
-    tweets = Tweet.objects.all().order_by('created_at').reverse()
+    user = request.user
+    twitteruser = user.following.all()
+    tweets = Tweet.objects.filter(user__in=[n for n in twitteruser]).order_by('created_at').reverse()
+    # tweets = Tweet.objects.filter(user=twitteruser[0])
+    # tweets = Tweet.objects.all().order_by('created_at').reverse()
     return render(request, 'user/homepage.html', {'tweets':tweets})
 
 def profile_view(request, user_id):

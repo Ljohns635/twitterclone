@@ -8,3 +8,6 @@ class Notification(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     read = models.BooleanField(default=False)
     content_type = models.ForeignKey(Tweet, related_name='notify_tweet', on_delete=models.CASCADE)
+
+def __str__(self):
+    return self.content_type
