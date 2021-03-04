@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('', include('twitteruser.urls', namespace='twitteruser')),
     path('', include('tweet.urls', namespace='tweet')),
+    path('', include('notification.urls', namespace='notification')),
 ]

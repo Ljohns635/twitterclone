@@ -9,3 +9,7 @@ class TwitterUser(AbstractUser):
     profile_bio = models.CharField(max_length=60)
     location = models.CharField(max_length=50)
     web_url = models.URLField(max_length=100)
+
+    def __str__(self):
+        return '@' + self.username
+    
