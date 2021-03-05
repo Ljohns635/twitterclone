@@ -19,14 +19,11 @@
     <div class="tweets-container">
       <div class="card tweet">
         <a class="author">
-          <img class="avatar" src="https://lorempixel.com/48/48/" />
+          <img class="avatar" src="{% static "profile_pics/placeholder.png" %}" />
           <span class="name"><a href="/profile/{{item.user.id}}">{{item.user}}</a></span>
           <span class="username"><a href="/tweet/{{item.id}}">{{item.created_at}}</a></span>
         </a>
         <div class="content">{{item.body}}</div>
-        <div class="actions">
-          <span class="fa fa-heart"></span>
-        </div>
       </div>
     </div>
     {% endfor %}

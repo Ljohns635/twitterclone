@@ -6,6 +6,7 @@ body {
   padding: 0;
 }
 
+/* Tweets body */
 a {
   text-decoration: none;
   cursor: pointer;
@@ -67,12 +68,13 @@ p {
 
 .tweets-header {
   margin: auto;
-  max-width: 774px;
+  max-width: 800px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: -1px;
+  margin-top: 30px;
 }
 
 .tweets-container > .tweet:last-child {
@@ -104,14 +106,92 @@ p {
   color: #888;
 }
 
-.tweet > .actions > .fa {
-  color: #888;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 12px;
-  margin-right: 36px;
+/* profile heading */
+.card_head {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  margin-top: 30px;
 }
 
-.tweet > .actions > .fa-heart:hover {
-  color: #B33;
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+.follow {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #337ab7;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+/* all forms */
+form {
+    border: 1px solid #ccc;
+    padding: 50px;
+    background-color: #fff;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+input[type=submit] {
+    background-color: #337ab7;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+input[type=submit]:hover {
+    opacity: 1;
+}
+
+input, label {
+    display:block;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 300px) {
+  input {
+     width: 100%;
+  }
 }

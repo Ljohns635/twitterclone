@@ -1,41 +1,50 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script
       src="https://kit.fontawesome.com/c17cfd3312.js"
       crossorigin="anonymous"
     ></script>
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     {% include 'ext/base.html' %}
-    <p>Tweets: {{ t_count }}</p>
-    <p>Followers: {{follower}}</p>
-    <p>Following: {{following}}</p>
-    <p><a href="/follow/{{user.id}}/">Follow</a></p>
-    <p><a href="/unfollow/{{user.id}}/">Unfollow</a></p>
-    <hr>
+
+    <div class="card_head">
+      <img src="{% static "profile_pics/twitter.jpg" %}" style="width: 100%" />
+      <h1> Welcome to Your Profile</h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>{{ t_count }} Tweets</td>
+            <td>{{following}} Following</td>
+            <td>{{follower}} Followers</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><a class="follow" href="/follow/{{user.id}}/">Follow</a></p>
+      <p><a class="follow" href="/unfollow/{{user.id}}/">Unfollow</a></p>
+    </div>
 
     <div class="card tweets-header">Tweets</div>
     {% for item in tweets%}
     <div class="tweets-container">
       <div class="card tweet">
         <a class="author">
-          <img class="avatar" src="https://lorempixel.com/48/48/" />
+          <img class="avatar" src="{% static "profile_pics/placeholder.png" %}" />
           <span class="name">{{item.user}}</span>
-          <span class="username"><a href="/tweet/{{item.id}}">{{item.created_at}}</a></span>
+          <span class="username"
+            ><a href="/tweet/{{item.id}}">{{item.created_at}}</a></span
+          >
         </a>
         <div class="content">{{item.body}}</div>
-        <div class="actions">
-          <span class="fa fa-heart"></span>
-        </div>
       </div>
     </div>
     {% endfor %}
-</body>
+  </body>
 </html>

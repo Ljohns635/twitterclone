@@ -1,15 +1,38 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+      integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <title>Document</title>
 </head>
 <body>
 {% include 'ext/base.html' %}
-    <p>{{tweet.user}}</p>
-    <p>{{tweet.created_at}}</p>
-    <p>{{tweet.body}}</p>
+    <div class="card tweets-header">Tweets</div>
+    <div class="tweets-container">
+      <div class="card tweet">
+        <a class="author">
+          <img class="avatar" src="{% static "profile_pics/placeholder.png" %}" />
+          <span class="name"><a href="/profile/{{tweet.user.id}}">{{tweet.user}}</a></span>
+          <span class="username"><a href="/tweet/{{user.id}}">{{tweet.created_at}}</a></span>
+        </a>
+        <div class="content">{{tweet.body}}</div>
+      </div>
+    </div>
+
 </body>
 </html>
