@@ -23,7 +23,7 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            TwitterUser.objects.create_user(
+            user_info = TwitterUser.objects.create_user(
                 first_name = data['first_name'],
                 last_name = data['last_name'],
                 username = data['username'],

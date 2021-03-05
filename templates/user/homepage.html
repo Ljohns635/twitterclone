@@ -1,19 +1,34 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/c17cfd3312.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
-</head>
-<body>
-{% include 'ext/base.html' %}
-{% comment %} {{tweets}} {% endcomment %}
+  </head>
+  <body>
+    {% include 'ext/base.html' %} {% comment %} {{tweets}} {% endcomment %}
+    <div class="card tweets-header">Tweets</div>
     {% for item in tweets%}
-    <p><a href="/profile/{{item.user.id}}">{{item.user}}</a></p>
-    <p><a href="/tweet/{{item.id}}">{{item.created_at}}</a></p>
-    <p>{{item.body}}</p>
-    <hr>
+    <div class="tweets-container">
+      <div class="card tweet">
+        <a class="author">
+          <img class="avatar" src="https://lorempixel.com/48/48/" />
+          <span class="name"><a href="/profile/{{item.user.id}}">{{item.user}}</a></span>
+          <span class="username"><a href="/tweet/{{item.id}}">{{item.created_at}}</a></span>
+        </a>
+        <div class="content">{{item.body}}</div>
+        <div class="actions">
+          <span class="fa fa-heart"></span>
+        </div>
+      </div>
+    </div>
     {% endfor %}
-</body>
+  </body>
 </html>

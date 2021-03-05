@@ -16,6 +16,7 @@ def create_tweet(request):
                 user = request.user,
                 body = data['body']
             )
+        # __author__ = "Recieved help from my facilitator Elizabeth"
         notifications = re.findall(r'@(\S+)', data['body'])
         for string in notifications:
             user = TwitterUser.objects.filter(username=string).first()
@@ -36,7 +37,4 @@ def tweet_details(request, tweet_id):
     tweet = Tweet.objects.get(id=tweet_id)
     return render(request, 'tweet_detail.html', {'tweet':tweet})
 
-# def tweet_count(request):
-#     tweet = Tweet.objects.filter(user=request.user).count()
-#     return render(request, 'user/profile.html', {'t_count': t_count})
 

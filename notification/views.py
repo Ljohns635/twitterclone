@@ -4,6 +4,8 @@ from tweet.models import Tweet
 from twitteruser.models import TwitterUser
 from django.contrib.auth.decorators import login_required
 
+# __author__ = "Recieved help from my facilitator Elizabeth"
+
 @login_required
 def notification_vew(request):
     user = request.user

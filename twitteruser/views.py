@@ -2,14 +2,17 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth.decorators import login_required
 from twitteruser.models import TwitterUser
 from tweet.models import Tweet
+from notification.models import Notification
+
+# __author__ = "Recieved help from Martin Villa getting homepage to show not just following users but the following user and current signed in user post"
 
 @login_required
 def home_view(request):
-    user = request.user
-    twitteruser = user.following.all()
-    tweets = Tweet.objects.filter(user__in=[n for n in twitteruser]).order_by('created_at').reverse()
-    # tweets = Tweet.objects.filter(user=twitteruser[0])
-    # tweets = Tweet.objects.all().order_by('created_at').reverse()
+    # user = request.user
+    # twitteruser = user.following.all()
+    # tweets = Tweet.objects.filter(user__in=[n for n in twitteruser]).order_by('created_at').reverse()
+    tweets = Tweet.objects.all().order_by('created_at').reverse()
+    tweets = [n for n in tweets if n.user in request.user.following.all() or request.user == n.user]
     return render(request, 'user/homepage.html', {'tweets':tweets})
 
 def profile_view(request, user_id):
@@ -25,11 +28,6 @@ def profile_view(request, user_id):
         'follower': follower,
         'following':following
         })
-
-# def follow_count(request):
-#     follower = TwitterUser.objects.filter(following=request.user).count()
-#     following = TwitterUser.objects.filter(followers=request.user).count()
-#     return render(request, 'ext/followers.html', {'follower': follower, 'following':following})
 
 @login_required
 def follow_user(request, user_id):
