@@ -17,11 +17,10 @@ def profile_view(request, user_id):
     tweets = Tweet.objects.filter(user=user_obj).order_by('created_at').reverse()
     following = user_obj.following.all().count()
     follower = user_obj.followers.all().count()
-    t_count = Tweet.objects.filter(user=request.user).count()
     return render(request, 'user/profile.html', {
         'user':user_obj,
         'tweets':tweets,
-        't_count': t_count,
+        # 't_count': t_count,
         'follower': follower,
         'following':following
         })
@@ -37,7 +36,7 @@ def follow_user(request, user_id):
     to_be_followed = TwitterUser.objects.get(id=user_id)
     logged_in_user.following.add(to_be_followed)
     logged_in_user.save()
-    return HttpResponseRedirect('profile_view')
+    return HttpResponseRedirect('/')
 
 @login_required
 def unfollow_user(request, user_id):
@@ -45,5 +44,5 @@ def unfollow_user(request, user_id):
     to_be_unfollowed = TwitterUser.objects.get(id=user_id)
     logged_in_user.following.remove(to_be_unfollowed)
     logged_in_user.save()
-    return HttpResponseRedirect('profile_view')
+    return HttpResponseRedirect('/')
 

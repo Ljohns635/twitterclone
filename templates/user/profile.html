@@ -8,7 +8,7 @@
 </head>
 <body>
     {% include 'ext/base.html' %}
-    <p>Tweets: {{ t_count }}</p>
+    {% comment %} <p>Tweets: {{ t_count }}</p> {% endcomment %}
     <p>Followers: {{follower}}</p>
     <p>Following: {{following}}</p>
     <p><a href="/follow/{{user.id}}/">Follow</a></p>

@@ -24,6 +24,6 @@ def tweet_details(request, tweet_id):
     return render(request, 'tweet_detail.html', {'tweet':tweet})
 
 # def tweet_count(request):
-#     t_count = Tweet.objects.filter(user=request.user).count()
-#     return render(request, 'ext/count.html', {'t_count': t_count})
+#     tweet = Tweet.objects.filter(user=request.user).count()
+#     return render(request, 'user/profile.html', {'t_count': t_count})
 

@@ -10,7 +10,7 @@
 {% include 'ext/base.html' %}
 {% comment %} {{tweets}} {% endcomment %}
     {% for item in tweets%}
-    <p><a href="profile/{{item.user.id}}">{{item.user}}</a></p>
+    <p><a href="/profile/{{item.user.id}}">{{item.user}}</a></p>
     <p><a href="/tweet/{{item.id}}">{{item.created_at}}</a></p>
     <p>{{item.body}}</p>
     <hr>
