@@ -2,6 +2,9 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 from tweet.forms import TweetForm
 from tweet.models import Tweet
 from django.contrib.auth.decorators import login_required
+from twitteruser.models import TwitterUser
+from notification.models import Notification
+import re
 
 @login_required
 def create_tweet(request):
@@ -13,6 +16,16 @@ def create_tweet(request):
                 user = request.user,
                 body = data['body']
             )
+        notifications = re.findall(r'@(\S+)', data['body'])
+        for string in notifications:
+            user = TwitterUser.objects.filter(username=string).first()
+            if user:
+                Notification.objects.create(
+                    read = False,
+                    content_type = new_data,
+                    reciever = user
+                )
+        print(notifications)
         return HttpResponseRedirect(reverse('tweet:tweet_details', args=[new_data.id]))
     
     form = TweetForm()

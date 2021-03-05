@@ -8,6 +8,9 @@
 </head>
 <body>
 {% include 'ext/base.html' %}
-    <p>{{notify}}</p>
+
+{% for item in notifications%}
+    <p>{{item.content_type.body}}</p>
+{% endfor %}
 </body>
 </html>
