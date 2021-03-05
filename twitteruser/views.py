@@ -17,10 +17,11 @@ def profile_view(request, user_id):
     tweets = Tweet.objects.filter(user=user_obj).order_by('created_at').reverse()
     following = user_obj.following.all().count()
     follower = user_obj.followers.all().count()
+    t_count = Tweet.objects.filter(user=user_id).count()
     return render(request, 'user/profile.html', {
         'user':user_obj,
         'tweets':tweets,
-        # 't_count': t_count,
+        't_count': t_count,
         'follower': follower,
         'following':following
         })
