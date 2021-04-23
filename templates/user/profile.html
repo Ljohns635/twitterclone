@@ -27,8 +27,11 @@
           </tr>
         </tbody>
       </table>
-      <p><a class="follow" href="/follow/{{user.id}}/">Follow</a></p>
+      {% if user in request.user.following.all  %}
       <p><a class="follow" href="/unfollow/{{user.id}}/">Unfollow</a></p>
+      {% else %}
+      <p><a class="follow" href="/follow/{{user.id}}/">Follow</a></p>
+      {% endif %}
     </div>
 
     <div class="card tweets-header">Tweets</div>
