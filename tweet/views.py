@@ -9,6 +9,7 @@ import re
 @login_required
 def create_tweet(request):
     context = {}
+    notify = Notification.objects.filter(reciever=request.user, read=False).count()
     form = TweetForm(request.POST)
     if form.is_valid():
         data = form.cleaned_data
@@ -30,11 +31,12 @@ def create_tweet(request):
         return HttpResponseRedirect(reverse('tweet:tweet_details', args=[new_data.id]))
     
     form = TweetForm()
-    context.update({'form': form, 'heading_three': 'Tell everybody what you\'re up to! What\'s new? What\'s changed?'})
+    context.update({'form': form, 'heading_three': 'Tell everybody what you\'re up to! What\'s new? What\'s changed?', 'notify':notify})
     return render(request, 'forms/generic.html', context)
 
 def tweet_details(request, tweet_id):
+    notify = Notification.objects.filter(reciever=request.user, read=False).count()
     tweet = Tweet.objects.get(id=tweet_id)
-    return render(request, 'tweet_detail.html', {'tweet':tweet})
+    return render(request, 'tweet_detail.html', {'tweet':tweet, 'notify':notify})
 
 

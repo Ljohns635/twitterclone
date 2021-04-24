@@ -11,9 +11,10 @@ def home_view(request):
     # user = request.user
     # twitteruser = user.following.all()
     # tweets = Tweet.objects.filter(user__in=[n for n in twitteruser]).order_by('created_at').reverse()
+    notify = Notification.objects.filter(reciever=request.user, read=False).count()
     tweets = Tweet.objects.all().order_by('created_at').reverse()
     tweets = [n for n in tweets if n.user in request.user.following.all() or request.user == n.user]
-    return render(request, 'user/homepage.html', {'tweets':tweets})
+    return render(request, 'user/homepage.html', {'tweets':tweets, 'notify':notify})
 
 def profile_view(request, user_id):
     user_obj = TwitterUser.objects.get(id=user_id)
